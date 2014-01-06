@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/04 17:15:33 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/04 17:37:34 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/06 17:13:56 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@
 # include <term.h>
 # include "libft.h"
 
-typedef struct		s_data
+typedef struct	s_window
 {
-	int				i;
-}					t_data;
+	int	li;
+	int	co;
+}				t_window;
 
 #endif

@@ -6,7 +6,7 @@
 #    By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/01/04 16:27:25 by wbeets            #+#    #+#              #
-#    Updated: 2014/01/06 10:32:12 by wbeets           ###   ########.fr        #
+#    Updated: 2014/01/06 14:11:00 by wbeets           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ re: fclean all
 gdb:
 	@mkdir -p .deb/
 	@cc -o $(DEB) $(INCLUDE) $(DFLAGS) $(LIBCOM) $(SRC)
-	@gdb $(DEB)
+	gdb $(DEB)
 
 lib:
 	@echo "\t---CHECKING LIBRARY---"
