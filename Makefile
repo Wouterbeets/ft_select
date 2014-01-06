@@ -6,12 +6,13 @@
 #    By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/01/04 16:27:25 by wbeets            #+#    #+#              #
-#    Updated: 2014/01/06 14:11:00 by wbeets           ###   ########.fr        #
+#    Updated: 2014/01/06 18:59:19 by wbeets           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= ft_select
-FILES	= main.c
+FILES	= main.c\
+		  ft_maxlen.c
 SRC		= $(addprefix src/, $(FILES))
 OBJ		= $(SRC:src/%.c=.obj/%.o)
 FLAGS	= -Wall -Werror -Wextra

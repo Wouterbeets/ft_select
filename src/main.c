@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/06 17:05:23 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/06 18:02:03 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/06 19:50:46 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,45 @@ int		ft_set_stage(int argc, struct termios *term)
 	return (1);
 }
 
+
+int		ft_set_tabs(t_window *size, char **list, int argc)
+{
+	int	max_len_tab;
+	int	i;
+	int	j;
+	char	*str;
+	
+	if (!(max_len_tab = ft_maxlen(list)))
+		return (-1);
+	i = 0;
+	j = -1;
+	while ((size->li / ++i) < (argc -1))
+		;
+	if (i * max_len_tab > size->co)
+		ft_putendl("please resize window to display everyting");
+	tputs(tgetstr("ti", NULL), 1, tputs_putchar);
+	while (++j <= i)
+	{
+		max_len_tab = max_len_tab * j;
+		str = tgetstr("cm", NULL);
+		ft_putstr(str);
+		tputs(str, 1, tputs_putchar);
+		ft_putchar('x');
+	}
+	return (1);
+}
+
+
+
 int		main(int argc, char **argv)
 {
 	struct termios	term;
 	t_window		size;
 
-	argv = argv + 1;
-	if(ft_set_stage(argc, &term))
-	ft_get_size(&size);
-//	ft_set_tabs();
+	(void)argv;
+	if ((!ft_set_stage(argc, &term))||(!ft_get_size(&size)))
+		return (-1);
+	ft_set_tabs(&size, argv, argc);
 //	ft_print(argc, argv);
 //	ft_wait_for_input();
 	return (0);

@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header.h                                           :+:      :+:    :+:   */
+/*   ft_maxlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/04 17:15:33 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/06 18:59:52 by wbeets           ###   ########.fr       */
+/*   Created: 2014/01/06 18:46:50 by wbeets            #+#    #+#             */
+/*   Updated: 2014/01/06 19:34:35 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H
-# define HEADER_H
+#include "header.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <termios.h>
-# include <termcap.h>
-# include <curses.h>
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <signal.h>
-# include <term.h>
-# include "libft.h"
-
-int		ft_maxlen(char **list);
-typedef struct	s_window
+int		ft_maxlen(char **list)
 {
-	int	li;
-	int	co;
-}				t_window;
+	int	i;
+	int	j;
+	int	len;
 
-#endif
+	len = 0;
+	i = 1;
+	j = 0;
+	while (list[i] != '\0')
+	{
+		while (list[i][j] != '\0')
+		{
+			if (j > len)
+				len = j;
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+	return (len + 1);
+}
