@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/04 17:15:33 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/07 17:34:33 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/07 20:03:47 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ typedef struct	s_window
 {
 	int	li;
 	int	co;
+	int	num_tab;
+	int	max_len;
+	int	arg_printed;
+	int	listcount;
+
 }				t_window;
 
 typedef struct		s_clist
@@ -57,5 +62,6 @@ int		tputs_putchar(int c);
 int		ft_set_stage(int argc, struct termios *term);
 int		ft_set_tabs(t_window *size, t_clist **list);
 t_clist	*ft_get_list(char **argv);
+void	ft_putheader();
 
 #endif

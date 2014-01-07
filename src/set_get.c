@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 17:32:26 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/07 18:38:39 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/07 19:48:06 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ int		ft_get_size(t_window *size)
 	return (1);
 }
 
-int		tputs_putchar(int c)
-{
-    write(1, &c, 1);
-    return (1);
-}
 
 int		ft_set_stage(int argc, struct termios *term)
 {
