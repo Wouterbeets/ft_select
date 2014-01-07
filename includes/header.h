@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/04 17:15:33 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/07 16:17:20 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/07 17:34:33 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,16 @@ void	ft_clstadd(t_clist **alst, t_clist *new);
 t_clist	*ft_clstnew(char *str);
 void	ft_clstaddend(t_clist **alst, t_clist *new);
 int		ft_clistcount(t_clist **alst);
+int		ft_move_up(t_clist **list);
+int		ft_move_down(t_clist **list);
+int		ft_move_left(t_clist **list);
+int		ft_move_right(t_clist **list);
+int		is_rtn(char *buf);
+int		is_arrow(char *buf);
+int		ft_get_size(t_window *size);
+int		tputs_putchar(int c);
+int		ft_set_stage(int argc, struct termios *term);
+int		ft_set_tabs(t_window *size, t_clist **list);
+t_clist	*ft_get_list(char **argv);
 
 #endif
