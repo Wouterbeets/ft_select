@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/06 17:05:23 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/07 17:34:57 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/07 18:20:47 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 int		ft_wait_for_input(t_clist **list)
 {
-	char	read_char[4];
+	char	read_char[5];
 	int		direction;
 
 	while (!(is_rtn(read_char)))
 	{
-		read(0, read_char, 3);
+		read(0, read_char, 5);
 		if ((direction = is_arrow(read_char)))
 		{
 			if (direction == 1)
@@ -37,6 +37,19 @@ int		ft_wait_for_input(t_clist **list)
 	return (1);
 }
 
+void	ft_printlist(t_clist *list)
+{
+	t_clist	*tmp;
+
+	tmp = list;
+	while (tmp->next != NULL)
+	{
+		ft_putendl((char *)tmp->str);
+		tmp = tmp->next;
+	}
+	ft_putendl((char *)tmp->str);
+}
+
 int		main(int argc, char **argv)
 {
 	struct termios	term;
@@ -49,19 +62,9 @@ int		main(int argc, char **argv)
 	list = ft_get_list(argv);
 	ft_set_tabs(&size, &list);
 //	ft_print(argc, argv);
+	ft_printlist(list);
 	ft_wait_for_input(&list);
 	return (0);
 }
-/*
-void	ft_printlist(t_clist *list)
-{
-	t_clist	*tmp;
 
-	tmp = list;
-	while (tmp->next != NULL)
-	{
-		ft_putendl((char *)tmp->str);
-		tmp = tmp->next;
-	}
-}
-*/
+

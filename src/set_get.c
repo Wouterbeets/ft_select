@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 17:32:26 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/07 17:34:46 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/07 18:38:39 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,19 @@ int		ft_set_stage(int argc, struct termios *term)
 	return (1);
 }
 
+void	ft_putheader()
+{
+	ft_putstr("  ____________________.____     __");
+	ft_putstr("_____________________________\n");
+	ft_putstr(" /   _____/\\_   _____/|    |    \\_  ");
+	ft_putstr(" _____/\\_   ___ \\__    ___/\n");
+	ft_putstr(" \\_____  \\  |    __)_ |    |     |    ");
+	ft_putstr("__)_ /    \\  \\/ |    |   \n");
+	ft_putstr(" /        \\ |        \\|    |___  |    ");
+	ft_putstr("    \\\\     \\____|    |   \n");
+	ft_putstr("/________ //________ /|_______ / /_____");
+	ft_putstr("___/ \\_______ /|____|   \n");
+}
 
 int		ft_set_tabs(t_window *size, t_clist **list)
 {
@@ -70,10 +83,10 @@ int		ft_set_tabs(t_window *size, t_clist **list)
 		tmp = max_len_tab;
 		max_len_tab = max_len_tab * j;
 		tputs(tgoto(tgetstr("cm", NULL), max_len_tab, 0), 1, tputs_putchar);
-		tputs(tgetstr("st", NULL), 1, tputs_putchar);
 		j++;
 		max_len_tab = tmp;
 	}
+	ft_putheader();
 	return (1);
 }
 
