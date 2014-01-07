@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 19:24:31 by gpetrov           #+#    #+#             */
-/*   Updated: 2013/12/26 17:59:40 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/07 14:00:33 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,19 @@
 # include <stdlib.h>
 # define BUFF_SIZE 1000
 
+typedef struct		s_list
+{
+	void			*content;
+	size_t			content_size;
+	struct s_list	*next;
+}					t_list;
+
+
 void	ft_putchar(char c);
 void	ft_putstr(char const *str);
 int		ft_atoi(char *str);
-char	*ft_strdup(char *src);
-int		ft_strlen(char *str);
+char	*ft_strdup(const char *s1);
+int		ft_strlen(const char *str);
 char	*ft_strcpy(char *s1, char *s2);
 void	ft_putnbr(int n);
 void	*ft_memset(void *b, int c, size_t len);
@@ -74,5 +82,12 @@ void	ft_putnbr_fd(int n, int fd);
 int		get_next_line(int const fd, char **line);
 char	*ft_make_buf(int const fd, char *buf, long *ret);
 char	*biggerbuf(int const fd, char *buf, int *ret);
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem));
+t_list	*ft_lstnew(void const *content, size_t content_size);
+void	ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
+void	ft_lstaddend(t_list **alst, t_list *new);
+void	ft_lstadd(t_list **alst, t_list *new);
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 
 #endif

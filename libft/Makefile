@@ -6,7 +6,7 @@
 #    By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/21 14:00:38 by gpetrov           #+#    #+#              #
-#    Updated: 2014/01/06 08:12:27 by wbeets           ###   ########.fr        #
+#    Updated: 2014/01/07 14:05:00 by wbeets           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -33,8 +33,9 @@ SRCS 	= ft_atoi.c ft_putchar.c ft_strlen.c \
 		ft_strjoin.c ft_strtrim.c ft_strsplit.c \
 		ft_itoa.c ft_putendl.c ft_putchar_fd.c \
 		ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-		get_next_line.c
-OBJS	= ${SRCS:.c=.o}
+		get_next_line.c\
+		ft_lstnew.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c
+OBJS	= $(SRCS:.c=.o)
 INC		= includes/
 FLAGS 	= -Wall -Wextra -Werror -pedantic
 
@@ -50,7 +51,7 @@ $(NAME): $(OBJS)
 	@echo  ".\c)"
 
 clean:
-	@rm -f $(OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
 	@rm -f $(NAME)

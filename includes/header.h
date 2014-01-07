@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/04 17:15:33 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/06 18:59:52 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/07 13:55:06 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,19 @@ typedef struct	s_window
 	int	li;
 	int	co;
 }				t_window;
+
+typedef struct		s_clist
+{
+	char			*str;
+	struct s_clist	*next;
+	struct s_clist	*prev;
+	int				col;
+	int				line;
+	int				selected;
+}					t_clist;
+
+void	ft_clstadd(t_clist **alst, t_clist *new);
+t_clist	*ft_clstnew(char *str);
+void	ft_clstaddend(t_clist **alst, t_clist *new);
 
 #endif
