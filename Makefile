@@ -6,16 +6,14 @@
 #    By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/01/04 16:27:25 by wbeets            #+#    #+#              #
-#    Updated: 2014/01/07 14:06:24 by wbeets           ###   ########.fr        #
+#    Updated: 2014/01/07 14:26:45 by wbeets           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= ft_select
 FILES	= main.c\
 		  ft_maxlen.c\
-		  ft_clstadd.c\
-		  ft_clstaddend.c\
-		  ft_clstnew.c
+		  listfunctions.c
 SRC		= $(addprefix src/, $(FILES))
 OBJ		= $(SRC:src/%.c=.obj/%.o)
 FLAGS	= -Wall -Werror -Wextra

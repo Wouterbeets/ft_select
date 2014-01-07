@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/06 17:05:23 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/07 14:17:58 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/07 17:08:40 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		ft_set_stage(int argc, struct termios *term)
 }
 
 
-int		ft_set_tabs(t_window *size, char **list, int argc)
+int		ft_set_tabs(t_window *size, t_clist **list)
 {
 	int	max_len_tab;
 	int	i;
@@ -63,16 +63,15 @@ int		ft_set_tabs(t_window *size, char **list, int argc)
 		return (-1);
 	i = 1;
 	j = 1;
-	while (size->li < (argc -1) / i)
+	while (size->li < ft_clistcount(list) / i)
 		i++;
 	tputs(tgetstr("ti", NULL), 1, tputs_putchar);
-	ft_putchar('x');
 	while (j < i)
 	{
 		tmp = max_len_tab;
 		max_len_tab = max_len_tab * j;
 		tputs(tgoto(tgetstr("cm", NULL), max_len_tab, 0), 1, tputs_putchar);
-		ft_putchar('x');
+		tputs(tgetstr("st", NULL), 1, tputs_putchar);
 		j++;
 		max_len_tab = tmp;
 	}
@@ -94,7 +93,78 @@ t_clist	*ft_get_list(char **argv)
 	return (ret);
 }
 
+int		is_rtn(char *buf)
+{
+	return (buf[0] == 10);
+}
 
+int		is_arrow(char *buf)
+{
+	if (buf[0] != 27 || buf[1] != 91)
+		return (0);
+	if (buf[2] == 65)
+		return (1);
+	if (buf[2] == 66)
+		return (2);
+	if (buf[2] == 67)
+		return (3);
+	if (buf[2] == 68)
+		return (4);
+	else
+		return (0);
+}
+
+int		ft_move_up(t_clist **list)
+{
+	(void)list;
+	ft_putstr("up");
+	return (1);
+}
+
+int		ft_move_down(t_clist **list)
+{
+	(void)list;
+	ft_putstr("down");
+	return (1);
+}
+
+int		ft_move_left(t_clist **list)
+{
+	(void)list;
+	ft_putstr("left");
+	return (1);
+}
+
+int		ft_move_right(t_clist **list)
+{
+	(void)list;
+	ft_putstr("right");
+	return (1);
+}
+
+
+int		ft_wait_for_input(t_clist **list)
+{
+	char	read_char[4];
+	int		direction;
+
+	while (!(is_rtn(read_char)))
+	{
+		read(0, read_char, 3);
+		if ((direction = is_arrow(read_char)))
+		{
+			if (direction == 1)
+				ft_move_up(list);
+			if (direction == 2)
+				ft_move_down(list);
+			if (direction == 3)
+				ft_move_right(list);
+			if (direction == 4)
+				ft_move_left(list);
+		}
+	}
+	return (1);
+}
 int		main(int argc, char **argv)
 {
 	struct termios	term;
@@ -105,10 +175,9 @@ int		main(int argc, char **argv)
 	if ((!ft_set_stage(argc, &term))||(!ft_get_size(&size)))
 		return (-1);
 	list = ft_get_list(argv);
-//	ft_printlist(list);
-	ft_set_tabs(&size, argv, argc);
+	ft_set_tabs(&size, &list);
 //	ft_print(argc, argv);
-//	ft_wait_for_input();
+	ft_wait_for_input(&list);
 	return (0);
 }
 /*

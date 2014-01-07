@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/04 17:15:33 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/07 13:55:06 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/07 16:17:20 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include <term.h>
 # include "libft.h"
 
-int		ft_maxlen(char **list);
 typedef struct	s_window
 {
 	int	li;
@@ -42,8 +41,10 @@ typedef struct		s_clist
 	int				selected;
 }					t_clist;
 
+int		ft_maxlen(t_clist **list);
 void	ft_clstadd(t_clist **alst, t_clist *new);
 t_clist	*ft_clstnew(char *str);
 void	ft_clstaddend(t_clist **alst, t_clist *new);
+int		ft_clistcount(t_clist **alst);
 
 #endif

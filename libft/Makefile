@@ -6,7 +6,7 @@
 #    By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/21 14:00:38 by gpetrov           #+#    #+#              #
-#    Updated: 2014/01/07 14:05:00 by wbeets           ###   ########.fr        #
+#    Updated: 2014/01/07 17:09:10 by wbeets           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -51,7 +51,7 @@ $(NAME): $(OBJS)
 	@echo  ".\c)"
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean: clean
 	@rm -f $(NAME)
