@@ -6,36 +6,84 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 17:22:23 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/07 17:28:13 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/08 11:16:33 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-int		ft_move_up(t_clist **list)
+t_clist	*ft_move_up(t_window *size, t_clist **list, t_clist *item)
 {
-	(void)list;
-	ft_putstr("up");
-	return (1);
+	item->is_cursor = 0;
+	if (item->prev)
+		item = item->prev;
+	else
+	{
+		while (item->next)
+			item = item->next;
+	}
+	item->is_cursor = 1;
+	ft_get_size(size);
+	ft_print(size, list);
+	return (item);
 }
 
-int		ft_move_down(t_clist **list)
+t_clist	*ft_move_down(t_window *size, t_clist **list, t_clist *item)
 {
-	(void)list;
-	ft_putstr("down");
-	return (1);
+	item->is_cursor = 0;
+	if (item->next)
+		item = item->next;
+	else
+	{
+		while (item->prev)
+			item = item->prev;
+	}
+	item->is_cursor = 1;
+	ft_get_size(size);
+	ft_print(size, list);
+	return (item);
+}
+t_clist	*ft_move_left(t_window *size, t_clist **list, t_clist *item)
+{
+	int	i;
+
+	i = 0;
+	item->is_cursor = 0;
+	while (i < size->items_per_tab)
+	{
+		if (item->prev)
+			item = item->prev;
+		else
+		{
+		while (item->next)
+			item = item->next;
+		}
+		i++;
+	}
+	item->is_cursor = 1;
+	ft_get_size(size);
+	ft_print(size, list);
+	return (item);
 }
 
-int		ft_move_left(t_clist **list)
+t_clist	*ft_move_right(t_window *size, t_clist **list, t_clist *item)
 {
-	(void)list;
-	ft_putstr("left");
-	return (1);
-}
+	int	i;
 
-int		ft_move_right(t_clist **list)
-{
-	(void)list;
-	ft_putstr("right");
-	return (1);
+	i = 0;
+	item->is_cursor = 0;
+	while (i < size->items_per_tab)
+	{
+		if (item->next)
+			item = item->next;
+		else
+		{
+			while (item->prev)
+				item = item->prev;
+		}
+		i++;
+	}
+	item->is_cursor = 1;
+	ft_get_size(size);
+	ft_print(size, list);
+	return (item);
 }

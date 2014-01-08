@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 17:32:26 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/07 19:48:06 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/08 10:57:05 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,25 @@ int		ft_set_stage(int argc, struct termios *term)
 	return (1);
 }
 
-void	ft_putheader()
+void	ft_putheader(t_window *size)
 {
+	tputs(tgetstr("ti", NULL), 1, tputs_putchar);
+	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 0), 1, tputs_putchar);
 	ft_putstr("  ____________________.____     __");
-	ft_putstr("_____________________________\n");
+	ft_putstr("_____________________________");
+	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 1), 1, tputs_putchar);
 	ft_putstr(" /   _____/\\_   _____/|    |    \\_  ");
-	ft_putstr(" _____/\\_   ___ \\__    ___/\n");
+	ft_putstr(" _____/\\_   ___ \\__    ___/");
+	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 2), 1, tputs_putchar);
 	ft_putstr(" \\_____  \\  |    __)_ |    |     |    ");
-	ft_putstr("__)_ /    \\  \\/ |    |   \n");
+	ft_putstr("__)_ /    \\  \\/ |    |   ");
+	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 3), 1, tputs_putchar);
 	ft_putstr(" /        \\ |        \\|    |___  |    ");
-	ft_putstr("    \\\\     \\____|    |   \n");
+	ft_putstr("    \\\\     \\____|    |   ");
+	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 4), 1, tputs_putchar);
 	ft_putstr("/________ //________ /|_______ / /_____");
 	ft_putstr("___/ \\_______ /|____|   \n");
+	tputs(tgoto(CM, POSX, POSY),TPUTS_END);
 }
 
 int		ft_set_tabs(t_window *size, t_clist **list)
@@ -81,7 +88,6 @@ int		ft_set_tabs(t_window *size, t_clist **list)
 		j++;
 		max_len_tab = tmp;
 	}
-	ft_putheader();
 	return (1);
 }
 
@@ -91,11 +97,13 @@ t_clist		*ft_get_list(char **argv)
 	int		i;
 
 	i = 1;
-	ret = ft_clstnew(argv[i++]);
+	ret = ft_clstnew(argv[i]);
+	i++;
 	while (argv[i] != '\0')
 	{
 		ft_clstadd(&ret, ft_clstnew(argv[i]));
 		i++;
 	}
+	ret->is_cursor = 1;
 	return (ret);
 }
