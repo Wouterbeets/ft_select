@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 17:32:26 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/08 10:57:05 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/08 13:32:53 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		ft_set_stage(int argc, struct termios *term)
 
 void	ft_putheader(t_window *size)
 {
-	tputs(tgetstr("ti", NULL), 1, tputs_putchar);
+	tputs(tgetstr("cl", NULL), 1, tputs_putchar);
 	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 0), 1, tputs_putchar);
 	ft_putstr("  ____________________.____     __");
 	ft_putstr("_____________________________");
@@ -64,31 +64,6 @@ void	ft_putheader(t_window *size)
 	ft_putstr("/________ //________ /|_______ / /_____");
 	ft_putstr("___/ \\_______ /|____|   \n");
 	tputs(tgoto(CM, POSX, POSY),TPUTS_END);
-}
-
-int		ft_set_tabs(t_window *size, t_clist **list)
-{
-	int	max_len_tab;
-	int	i;
-	int	j;
-	int tmp;
-
-	if (!(max_len_tab = ft_maxlen(list) + 5))
-		return (-1);
-	i = 1;
-	j = 1;
-	while (size->li < ft_clistcount(list) / i)
-		i++;
-	tputs(tgetstr("ti", NULL), 1, tputs_putchar);
-	while (j < i)
-	{
-		tmp = max_len_tab;
-		max_len_tab = max_len_tab * j;
-		tputs(tgoto(tgetstr("cm", NULL), max_len_tab, 0), 1, tputs_putchar);
-		j++;
-		max_len_tab = tmp;
-	}
-	return (1);
 }
 
 t_clist		*ft_get_list(char **argv)

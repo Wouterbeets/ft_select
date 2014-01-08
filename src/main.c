@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/06 17:05:23 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/08 11:05:50 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/08 13:34:45 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,10 @@ int		ft_wait_for_input(t_window *size, t_clist **list)
 			if (direction == 4)
 				item = ft_move_left(size, list, item);
 		}
+		if (is_space(read_char))
+			item = ft_select(size, list, item);
 	}
 	return (1);
-}
-
-void	ft_printlist(t_clist *list)
-{
-	t_clist	*tmp;
-
-	tmp = list;
-	while (tmp->next != NULL)
-	{
-		ft_putendl((char *)tmp->str);
-		tmp = tmp->next;
-	}
-	ft_putendl((char *)tmp->str);
 }
 
 int		num_tab_needed(t_window *size, t_clist **list)
@@ -78,10 +67,13 @@ void	ft_fill_struct_window(t_window *size, t_clist **list)
 
 void	ft_print_item(t_clist *item)
 {
-	if (item->is_cursor == 1)
+	if (item->is_cursor)
 		tputs(tgetstr("us", NULL), TPUTS_END);
+	if (item->is_selected)
+		tputs(tgetstr("mr", NULL), TPUTS_END);
 	ft_putstr(item->str);
-	tputs(tgetstr("ue", NULL), TPUTS_END);
+	tputs(tgetstr("me", NULL), TPUTS_END);
+
 }
 
 
@@ -117,9 +109,7 @@ int		main(int argc, char **argv)
 	if ((!ft_set_stage(argc, &term))||(!ft_get_size(&size)))
 		return (-1);
 	list = ft_get_list(argv);
-//	ft_set_tabs(&size, &list);
 	ft_print(&size, &list);
-//	ft_printlist(list);
 	ft_wait_for_input (&size ,&list);
 	return (0);
 }

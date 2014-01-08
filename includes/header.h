@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/04 17:15:33 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/08 11:06:25 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/08 13:33:17 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct		s_clist
 	char			*str;
 	struct s_clist	*next;
 	struct s_clist	*prev;
-	int				selected;
+	int				is_selected;
 	int				is_cursor;
 }					t_clist;
 
@@ -71,5 +71,7 @@ t_clist	*ft_get_list(char **argv);
 void	ft_putheader(t_window *size);
 void	ft_fill_struct_window(t_window *size, t_clist **list);
 void	ft_print(t_window *size, t_clist **list);
+int		is_space(char *buf);
+t_clist	*ft_select(t_window *size, t_clist **list, t_clist *item);
 
 #endif
