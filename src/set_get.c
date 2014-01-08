@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 17:32:26 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/08 13:32:53 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/08 18:14:27 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,27 @@ int		ft_set_stage(int argc, struct termios *term)
 	return (1);
 }
 
+t_clist		*ft_get_list(char **argv)
+{
+	t_clist	*ret;
+	int		i;
+
+	i = 1;
+	ret = ft_clstnew(argv[i]);
+	i++;
+	while (argv[i] != '\0')
+	{
+		ft_clstaddend(&ret, ft_clstnew(argv[i]));
+		i++;
+	}
+	ret->is_cursor = 1;
+	return (ret);
+}
+
 void	ft_putheader(t_window *size)
 {
 	tputs(tgetstr("cl", NULL), 1, tputs_putchar);
+	tputs(tgetstr("vi", NULL), 1, tputs_putchar);
 	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 0), 1, tputs_putchar);
 	ft_putstr("  ____________________.____     __");
 	ft_putstr("_____________________________");
@@ -66,19 +84,8 @@ void	ft_putheader(t_window *size)
 	tputs(tgoto(CM, POSX, POSY),TPUTS_END);
 }
 
-t_clist		*ft_get_list(char **argv)
+int		tputs_putchar(int c)
 {
-	t_clist	*ret;
-	int		i;
-
-	i = 1;
-	ret = ft_clstnew(argv[i]);
-	i++;
-	while (argv[i] != '\0')
-	{
-		ft_clstadd(&ret, ft_clstnew(argv[i]));
-		i++;
-	}
-	ret->is_cursor = 1;
-	return (ret);
+    write(1, &c, 1);
+    return (1);
 }

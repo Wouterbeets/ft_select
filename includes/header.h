@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/04 17:15:33 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/08 13:33:17 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/08 18:30:22 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,19 @@ int		ft_set_stage(int argc, struct termios *term);
 int		ft_set_tabs(t_window *size, t_clist **list);
 t_clist	*ft_get_list(char **argv);
 void	ft_putheader(t_window *size);
-void	ft_fill_struct_window(t_window *size, t_clist **list);
 void	ft_print(t_window *size, t_clist **list);
 int		is_space(char *buf);
 t_clist	*ft_select(t_window *size, t_clist **list, t_clist *item);
+int		ft_list_del(t_clist **alst);
+int		is_bspace(char *buf);
+t_clist	*ft_del_lst_item(t_clist **list, t_clist *item);
+t_clist	*ft_del_item(t_window *size, t_clist **list, t_clist *item);
+t_clist	*list_end(t_clist *item);
+t_clist	*list_start(t_clist *item);
+t_clist	*ft_del_start_end(t_clist **old, t_clist *item);
+int		ft_wait_for_input(t_window *size, t_clist **list);
+int		num_tab_needed(t_window *size, t_clist **list);
+void	ft_fill_struct_window(t_window *size, t_clist **list);
+void	ft_print_item(t_clist *item);
 
 #endif

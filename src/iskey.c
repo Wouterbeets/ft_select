@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 17:26:01 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/08 13:22:50 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/08 14:26:32 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ int		is_arrow(char *buf)
 int		is_space(char *buf)
 {
 	if (buf[0] == 32)
+		return (1);
+	return (0);
+}
+
+int		is_bspace(char *buf)
+{
+	if (buf[0] == 127)
 		return (1);
 	return (0);
 }

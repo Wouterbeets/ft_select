@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 14:21:47 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/07 16:17:40 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/08 18:33:24 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,23 @@ int		ft_clistcount(t_clist **alst)
 		tmp = tmp->next;
 	}
 	return (i);
+}
+
+int	ft_list_del(t_clist **alst)
+{
+	t_clist	*tmp;
+	t_clist	*now;
+
+	now = *alst;
+	while (now->next)
+	{
+		tmp = now->next;
+		free(now->str);
+		free(now);
+		now = tmp;
+	}
+	free(now->str);
+	free(now);
+	*alst = NULL;
+	return(1);
 }
