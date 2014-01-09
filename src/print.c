@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/08 18:15:20 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/08 18:17:07 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/09 10:13:48 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_print_item(t_clist *item)
 		tputs(tgetstr("us", NULL), TPUTS_END);
 	if (item->is_selected)
 		tputs(tgetstr("mr", NULL), TPUTS_END);
-	ft_putstr(item->str);
+	ft_putstr_fd(item->str, FD);
 	tputs(tgetstr("me", NULL), TPUTS_END);
 }
 

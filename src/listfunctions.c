@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 14:21:47 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/08 18:33:24 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/09 10:15:26 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_clstadd(t_clist **alst, t_clist *new)
 void	ft_clstaddend(t_clist **alst, t_clist *new)
 {
 	t_clist	*tmp;
-	
+
 	tmp = *alst;
 	while(tmp->next != NULL)
 		tmp = tmp->next;

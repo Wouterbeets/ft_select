@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/08 18:23:23 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/08 18:56:27 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/09 10:15:26 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_clist	*ft_select(t_window *size, t_clist **list, t_clist *item)
 t_clist	*ft_del_item(t_window *size, t_clist **list, t_clist *item)
 {
 	item = ft_del_lst_item(list, item);
-	ft_putstr("end2");
 	item->is_cursor = 1;
 	ft_get_size(size);
 	ft_print(size, list);

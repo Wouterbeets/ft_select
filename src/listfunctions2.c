@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 14:21:47 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/08 18:59:46 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/09 09:44:01 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,42 +39,39 @@ t_clist	*ft_del_start_end(t_clist **old, t_clist *item)
 	if (item->next == NULL && item->prev == NULL)
 	{
 		tmp = ft_clstnew("");
-		return (tmp);
+		ft_list_del(old);
+		*old = tmp;
 	}
-	if (item->next)
+	else if (item->next)
 	{
 		tmp = item->next;
 		tmp->prev = NULL;
+		free(item->str);
+		free(item);
 		*old = tmp;
-		return (tmp);
 	}
 	else
 	{
 		tmp = item->prev;
 		tmp->next =  NULL;
+		free(item->str);
+		free(item);
 		return (list_start(tmp));
 	}
+	return (tmp);
 }
 
 t_clist	*list_end(t_clist *item)
 {
-	ft_putstr("1");
 	while (item->next)
-	{
-		ft_putstr("2");
 		item = item->next;
-	}
 	return (item);
 }
 
 t_clist	*list_start(t_clist *item)
 {
-	ft_putstr("3");
 	while (item->prev)
-	{
-		ft_putstr("4");
 		item = item->prev;
-	}
 	return (item);
 }
 

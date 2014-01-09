@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 17:32:26 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/08 18:14:27 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/09 12:59:55 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int		ft_get_size(t_window *size)
 {
-	if((size->co = tgetnum("co")) < 1)
+	struct winsize	ws;
+
+	ioctl(FD ,TIOCGWINSZ, &ws);
+	if ((size->co = (int)ws.ws_col/*tgetnum("co"))*/) < 0)
 		return (-1);
-	if((size->li = tgetnum("li")) < 1)
+	if ((size->li = ws.ws_row/*tgetnum("li"))*/) < 0)
 		return (-1);
 	return (1);
 }
@@ -67,25 +70,25 @@ void	ft_putheader(t_window *size)
 	tputs(tgetstr("cl", NULL), 1, tputs_putchar);
 	tputs(tgetstr("vi", NULL), 1, tputs_putchar);
 	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 0), 1, tputs_putchar);
-	ft_putstr("  ____________________.____     __");
-	ft_putstr("_____________________________");
+	ft_putstr_fd("  ____________________.____     __", FD);
+	ft_putstr_fd("_____________________________", FD);
 	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 1), 1, tputs_putchar);
-	ft_putstr(" /   _____/\\_   _____/|    |    \\_  ");
-	ft_putstr(" _____/\\_   ___ \\__    ___/");
+	ft_putstr_fd(" /   _____/\\_   _____/|    |    \\_  ", FD);
+	ft_putstr_fd(" _____/\\_   ___ \\__    ___/", FD);
 	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 2), 1, tputs_putchar);
-	ft_putstr(" \\_____  \\  |    __)_ |    |     |    ");
-	ft_putstr("__)_ /    \\  \\/ |    |   ");
+	ft_putstr_fd(" \\_____  \\  |    __)_ |    |     |    ", FD);
+	ft_putstr_fd("__)_ /    \\  \\/ |    |   ", FD);
 	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 3), 1, tputs_putchar);
-	ft_putstr(" /        \\ |        \\|    |___  |    ");
-	ft_putstr("    \\\\     \\____|    |   ");
+	ft_putstr_fd(" /        \\ |        \\|    |___  |    ", FD);
+	ft_putstr_fd("    \\\\     \\____|    |   ", FD);
 	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 4), 1, tputs_putchar);
-	ft_putstr("/________ //________ /|_______ / /_____");
-	ft_putstr("___/ \\_______ /|____|   \n");
+	ft_putstr_fd("/________ //________ /|_______ / /_____", FD);
+	ft_putstr_fd("___/ \\_______ /|____|   \n", FD);
 	tputs(tgoto(CM, POSX, POSY),TPUTS_END);
 }
 
 int		tputs_putchar(int c)
 {
-    write(1, &c, 1);
+    write(2, &c, 1);
     return (1);
 }

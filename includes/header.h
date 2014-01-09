@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/04 17:15:33 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/08 18:30:22 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/09 12:56:11 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define POSY size->arg_printed + HEADHEIGHT
 # define TPUTS_END 1, tputs_putchar
 # define POSX (size->co / (size->num_tab + 2)) * size->tab_counter
+# define FD 2
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -29,6 +30,8 @@
 # include <signal.h>
 # include <term.h>
 # include "libft.h"
+# include "signal.h"
+# include <sys/ioctl.h>
 
 typedef struct	s_window
 {
@@ -83,5 +86,12 @@ int		ft_wait_for_input(t_window *size, t_clist **list);
 int		num_tab_needed(t_window *size, t_clist **list);
 void	ft_fill_struct_window(t_window *size, t_clist **list);
 void	ft_print_item(t_clist *item);
+t_clist	*what_arrow(int drctn, t_window *size, t_clist **list, t_clist *item);
+int		is_esc(char *buf);
+int		is_cntrl_z(char *buf);
+int		is_cntrl_c(char *buf);
+int		is_alt_r(char *buf);
+void	ft_signals();
+int		is_del(char *buf);
 
 #endif
