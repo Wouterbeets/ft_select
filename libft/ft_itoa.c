@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/22 18:43:50 by gpetrov           #+#    #+#             */
-/*   Updated: 2013/12/22 18:43:50 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/09 15:46:51 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ static char		*isneg(int n, char *nb, char *rnb)
 	return (rnb);
 }
 
-char		*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	char	*nb;
-	int	i;
+	int		i;
 	char	*rnb;
 
 	i = 0;

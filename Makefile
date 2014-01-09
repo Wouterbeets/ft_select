@@ -6,7 +6,7 @@
 #    By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/01/04 16:27:25 by wbeets            #+#    #+#              #
-#    Updated: 2014/01/09 12:26:15 by wbeets           ###   ########.fr        #
+#    Updated: 2014/01/09 14:51:29 by wbeets           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,12 @@ FILES	= main.c\
 		  listfunctions.c\
 		  moves.c\
 		  iskey.c\
+		  iskey2.c\
 		  set_get.c\
 		  select_del_list.c\
 		  listfunctions2.c\
 		  print.c\
+		  print2.c\
 		  signal.c
 SRC		= $(addprefix src/, $(FILES))
 OBJ		= $(SRC:src/%.c=.obj/%.o)

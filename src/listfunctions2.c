@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   listfunctions.c                                    :+:      :+:    :+:   */
+/*   listfunctions2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 14:21:47 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/09 09:44:01 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/09 15:45:07 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_clist	*ft_del_start_end(t_clist **old, t_clist *item)
 	else
 	{
 		tmp = item->prev;
-		tmp->next =  NULL;
+		tmp->next = NULL;
 		free(item->str);
 		free(item);
 		return (list_start(tmp));

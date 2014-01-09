@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/08 18:15:20 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/09 10:13:48 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/09 15:39:09 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,29 @@ void	ft_print_item(t_clist *item)
 	tputs(tgetstr("me", NULL), TPUTS_END);
 }
 
+
+void	ft_putheader(t_window *size)
+{
+	tputs(tgetstr("cl", NULL), 1, tputs_putchar);
+	tputs(tgetstr("vi", NULL), 1, tputs_putchar);
+	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 0), 1, tputs_putchar);
+	ft_putstr_fd("  ____________________.____     __", FD);
+	ft_putstr_fd("_____________________________", FD);
+	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 1), 1, tputs_putchar);
+	ft_putstr_fd(" /   _____/\\_   _____/|    |    \\_  ", FD);
+	ft_putstr_fd(" _____/\\_   ___ \\__    ___/", FD);
+	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 2), 1, tputs_putchar);
+	ft_putstr_fd(" \\_____  \\  |    __)_ |    |     |    ", FD);
+	ft_putstr_fd("__)_ /    \\  \\/ |    |   ", FD);
+	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 3), 1, tputs_putchar);
+	ft_putstr_fd(" /        \\ |        \\|    |___  |    ", FD);
+	ft_putstr_fd("    \\\\     \\____|    |   ", FD);
+	tputs(tgoto(tgetstr("cm", NULL), size->co / 2 - 40, 4), 1, tputs_putchar);
+	ft_putstr_fd("/________ //________ /|_______ / /_____", FD);
+	ft_putstr_fd("___/ \\_______ /|____|   \n", FD);
+	tputs(tgoto(CM, POSX, POSY), TPUTS_END);
+}
+
 void	ft_print(t_window *size, t_clist **list)
 {
 	t_clist	*lst;
@@ -58,7 +81,7 @@ void	ft_print(t_window *size, t_clist **list)
 			size->tab_counter++;
 			size->arg_printed = 0;
 		}
-		tputs(tgoto(CM, POSX, POSY),TPUTS_END);
+		tputs(tgoto(CM, POSX, POSY), TPUTS_END);
 		lst = lst->next;
 	}
 	ft_print_item(lst);

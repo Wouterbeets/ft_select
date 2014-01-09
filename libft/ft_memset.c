@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/22 18:43:53 by gpetrov           #+#    #+#             */
-/*   Updated: 2013/12/22 18:43:53 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/09 15:32:52 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*ft_memset(void *b, int c, size_t len)
 {
 	unsigned char	*ptr;
-	size_t	i;
+	size_t			i;
 
 	ptr = (unsigned char *) b;
 	i = 0;

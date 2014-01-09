@@ -6,11 +6,33 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/08 18:23:23 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/09 10:15:26 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/09 14:16:12 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+void	ft_refresh(t_window *size, t_clist **list, struct termios *term)
+{
+	ft_unset_stage(term);
+	ft_set_stage(term);
+	ft_get_size(size);
+	ft_print(size, list);
+}
+
+t_clist	*what_arrow(int drctn, t_window *size, t_clist **list, t_clist *item)
+{
+	if (drctn == 1)
+		item = ft_move_up(size, list, item);
+	if (drctn == 2)
+		item = ft_move_down(size, list, item);
+	if (drctn == 3)
+		item = ft_move_right(size, list, item);
+	if (drctn == 4)
+		item = ft_move_left(size, list, item);
+	return (item);
+}
+
 
 t_clist	*ft_select(t_window *size, t_clist **list, t_clist *item)
 {
@@ -38,27 +60,4 @@ t_clist	*ft_del_item(t_window *size, t_clist **list, t_clist *item)
 	ft_get_size(size);
 	ft_print(size, list);
 	return (item);
-}
-
-int		ft_maxlen(t_clist **list)
-{
-	int		i;
-	int		len;
-	t_clist	*ls;
-
-	len = 0;
-	i = 0;
-	ls = *list;
-	while (ls->next != NULL)
-	{
-		while (ls->str[i] != '\0')
-		{
-			if (i > len)
-				len = i;
-			i++;
-		}
-		ls = ls->next;
-		i = 0;
-	}
-	return (len + 1);
 }

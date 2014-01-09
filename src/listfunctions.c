@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 14:21:47 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/09 10:15:26 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/09 15:44:30 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_clstaddend(t_clist **alst, t_clist *new)
 	t_clist	*tmp;
 
 	tmp = *alst;
-	while(tmp->next != NULL)
+	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = new;
 	new->prev = tmp;
@@ -43,7 +43,7 @@ t_clist	*ft_clstnew(char *str)
 	if (str == NULL)
 		newlist->str = NULL;
 	else
-		newlist->str = ft_strdup(str);;
+		newlist->str = ft_strdup(str);
 	newlist->next = NULL;
 	newlist->prev = NULL;
 	return (newlist);
@@ -64,7 +64,7 @@ int		ft_clistcount(t_clist **alst)
 	return (i);
 }
 
-int	ft_list_del(t_clist **alst)
+int		ft_list_del(t_clist **alst)
 {
 	t_clist	*tmp;
 	t_clist	*now;
@@ -80,5 +80,5 @@ int	ft_list_del(t_clist **alst)
 	free(now->str);
 	free(now);
 	*alst = NULL;
-	return(1);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/04 17:15:33 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/09 12:56:11 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/09 14:49:31 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct	s_window
 	int	listcount;
 	int	items_per_tab;
 	int	tab_counter;
-
 }				t_window;
 
 typedef struct		s_clist
@@ -56,6 +55,7 @@ typedef struct		s_clist
 }					t_clist;
 
 int		ft_maxlen(t_clist **list);
+void	ft_refresh(t_window *size, t_clist **list, struct termios *term);
 void	ft_clstadd(t_clist **alst, t_clist *new);
 t_clist	*ft_clstnew(char *str);
 void	ft_clstaddend(t_clist **alst, t_clist *new);
@@ -68,7 +68,7 @@ int		is_rtn(char *buf);
 int		is_arrow(char *buf);
 int		ft_get_size(t_window *size);
 int		tputs_putchar(int c);
-int		ft_set_stage(int argc, struct termios *term);
+int		ft_set_stage(struct termios *term);
 int		ft_set_tabs(t_window *size, t_clist **list);
 t_clist	*ft_get_list(char **argv);
 void	ft_putheader(t_window *size);
@@ -82,7 +82,6 @@ t_clist	*ft_del_item(t_window *size, t_clist **list, t_clist *item);
 t_clist	*list_end(t_clist *item);
 t_clist	*list_start(t_clist *item);
 t_clist	*ft_del_start_end(t_clist **old, t_clist *item);
-int		ft_wait_for_input(t_window *size, t_clist **list);
 int		num_tab_needed(t_window *size, t_clist **list);
 void	ft_fill_struct_window(t_window *size, t_clist **list);
 void	ft_print_item(t_clist *item);
@@ -93,5 +92,7 @@ int		is_cntrl_c(char *buf);
 int		is_alt_r(char *buf);
 void	ft_signals();
 int		is_del(char *buf);
+int		ft_wait_for_input(t_window *size, t_clist **list, struct termios *term);
+int		ft_unset_stage(struct termios *term);
 
 #endif

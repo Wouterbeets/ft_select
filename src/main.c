@@ -6,27 +6,23 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/06 17:05:23 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/09 13:13:11 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/09 15:37:12 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-void	ft_refresh(t_window *size, t_clist **list)
-{
-	ft_get_size(size);
-	ft_print(size, list);
-}
 
-int		ft_wait_for_input(t_window *size, t_clist **list)
+int		ft_wait_for_input(t_window *size, t_clist **list, struct termios *term)
 {
-	char	read_char[5];
+	char	*read_char;
 	int		direction;
 	t_clist	*item;
 
 	item = *list;
+	read_char = ft_strnew(5);
 	while (!(is_rtn(read_char)))
 	{
-		read_char[1] = 0;
+		read_char = (char *)ft_bzero(read_char, sizeof(read_char));
 		read(0, read_char, 5);
 		if ((direction = is_arrow(read_char)))
 			item = what_arrow(direction, size, list, item);
@@ -36,13 +32,10 @@ int		ft_wait_for_input(t_window *size, t_clist **list)
 			item = ft_del_item(size, list, item);
 		if (is_esc(read_char))
 			return (0);
-		if (is_cntrl_z(read_char))
-			item = ft_select(size, list, item);
-		if (is_cntrl_c(read_char))
-			item = ft_select(size, list, item);
 		if (is_alt_r(read_char))
-			ft_refresh(size, list);
+			ft_refresh(size, list, term);
 	}
+	free(read_char);
 	return (1);
 }
 
@@ -50,7 +43,7 @@ int		ft_unset_stage(struct termios *term)
 {
 	term->c_lflag |= ICANON;
 	term->c_lflag |= ECHO;
-	tcsetattr(0, 0, term); /* back to default values */
+	tcsetattr(0, 0, term);
 	tputs(tgetstr("me", NULL), 1, tputs_putchar);
 	tputs(tgetstr("cl", NULL), 1, tputs_putchar);
 	tputs(tgetstr("ve", NULL), 1, tputs_putchar);
@@ -59,7 +52,7 @@ int		ft_unset_stage(struct termios *term)
 
 void	ft_return(t_clist **list)
 {
-	t_clist *tmp;
+	t_clist	*tmp;
 
 	tmp = *list;
 	while (tmp)
@@ -81,13 +74,13 @@ int		main(int argc, char **argv)
 	t_window		size;
 	t_clist			*list;
 
-	(void)argv;
-	if ((!ft_set_stage(argc, &term))||(!ft_get_size(&size)))
+	(void)argc;
+	if ((!ft_set_stage(&term))||(!ft_get_size(&size)))
 		return (-1);
 	ft_signals();
 	list = ft_get_list(argv);
 	ft_print(&size, &list);
-	if (ft_wait_for_input (&size ,&list))
+	if (ft_wait_for_input (&size, &list, &term))
 	{
 		ft_unset_stage(&term);
 		ft_return(&list);
