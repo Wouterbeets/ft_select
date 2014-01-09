@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/04 17:15:33 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/09 14:49:31 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/09 16:48:21 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # define HEADHEIGHT 5
 # define POSY size->arg_printed + HEADHEIGHT
 # define TPUTS_END 1, tputs_putchar
-# define POSX (size->co / (size->num_tab + 2)) * size->tab_counter
+# define TABS size->co / (size->num_tab + 2)
+# define POSX (tabs * size->tab_counter)
 # define FD 2
 
 # include <unistd.h>
@@ -71,7 +72,7 @@ int		tputs_putchar(int c);
 int		ft_set_stage(struct termios *term);
 int		ft_set_tabs(t_window *size, t_clist **list);
 t_clist	*ft_get_list(char **argv);
-void	ft_putheader(t_window *size);
+void	ft_putheader(t_window *size, int tabs);
 void	ft_print(t_window *size, t_clist **list);
 int		is_space(char *buf);
 t_clist	*ft_select(t_window *size, t_clist **list, t_clist *item);

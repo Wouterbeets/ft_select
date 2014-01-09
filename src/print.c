@@ -6,7 +6,7 @@
 /*   By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/08 18:15:20 by wbeets            #+#    #+#             */
-/*   Updated: 2014/01/09 15:39:09 by wbeets           ###   ########.fr       */
+/*   Updated: 2014/01/09 16:49:11 by wbeets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_print_item(t_clist *item)
 }
 
 
-void	ft_putheader(t_window *size)
+void	ft_putheader(t_window *size, int tabs)
 {
 	tputs(tgetstr("cl", NULL), 1, tputs_putchar);
 	tputs(tgetstr("vi", NULL), 1, tputs_putchar);
@@ -68,10 +68,17 @@ void	ft_putheader(t_window *size)
 void	ft_print(t_window *size, t_clist **list)
 {
 	t_clist	*lst;
+	int		tabs;
 
 	ft_fill_struct_window(size, list);
-	ft_putheader(size);
 	lst = *list;
+	tabs = TABS;
+	if (TABS < size->max_len && size->num_tab + 2 * size->max_len < size->co)
+	{
+		tabs = size->max_len + 2;
+		size->tab_counter = 0;
+	}
+	ft_putheader(size, tabs);
 	while (lst->next != NULL)
 	{
 		ft_print_item(lst);
